@@ -1,0 +1,9 @@
+.monthlyExpenses{
+    background-color: aqua;
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+}
+
+.yearlyExpenses{
+    background-color: bisque;
+}

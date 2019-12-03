@@ -1,0 +1,60 @@
+<p>Welcome to my Budget Calculator</p>
+
+
+<form>
+        <span>Your monthly incomes</span>
+        <div class="form-row">
+          <div class="col">
+            <input #incomeAmount type="text" class="form-control" placeholder="Total amount">
+          </div>
+          
+        </div>
+</form>
+
+
+<form class="container" [formGroup]="monthlyExpensesForm" class="monthlyExpenses">
+    <div formArrayName="monthlyExpenses">
+            <span>Your monthly expenses</span>
+            <button type="button" class="btn btn-primary bnt-sm" (click)="addMonthlyExpense()">add</button>
+        <div *ngFor="let item of monthlyExpenses.controls; let meIndex = index" [formGroupName]="meIndex">
+            
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" formControlName="meExpenseName">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Amount" formControlName="meExpenseAmount">
+                </div>
+                <button type="button" class="btn btn-danger bnt-sm" (click)="deleteMonthlyExpense(meIndex)">delete</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form class="container" [formGroup]="yearlyExpensesForm" class="yearlyExpenses">
+    <div formArrayName="yearlyExpenses">
+            <span>Your yearly expenses</span>
+            <button type="button" class="btn btn-primary bnt-sm" (click)="addYearlyExpense()">add</button>
+        <div *ngFor="let item of yearlyExpenses.controls; let yeIndex = index" [formGroupName]="yeIndex">
+            
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" formControlName="yeExpenseName">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Amount" formControlName="yeExpenseAmount">
+                </div>
+                <button type="button" class="btn btn-danger btn-sm" (click)="deleteYearlyExpense(yeIndex)">delete</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<button type="button" class="btn btn-success btn-lg" (click)="Calculate(this.monthlyExpensesForm.value, this.yearlyExpensesForm.value)">CALCULATE</button>
+<div>
+    <span>Results</span><br>
+    <span>TOTAL INCOMES PER MONTH : {{income}} </span><br>
+    <span>MONTHLY EXPENSES AMOUNTH : {{monthlyDue}} </span><br>
+    <span>SAVINGS FOR YEARLY EXPENSES (AMOUNT PER MONTH) : {{yearlyDue}} </span><br>
+    <span>SAVES : {{saves}} </span><br>
+</div>
